@@ -15,7 +15,7 @@ namespace Offerten_Helper
         private void CmdTest_Click(object sender, EventArgs e)
         {
             string excelPath = TxtExcelFile.Text;
-            TxtTestField.Text = Controller.GetExcelData(excelPath, true);
+            TxtTestField.Text = Controller.GetExcelData(excelPath);
         }
     }
 }

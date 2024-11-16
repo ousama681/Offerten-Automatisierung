@@ -10,7 +10,7 @@ namespace Offerten_Helper
 {
     public class Controller
     {
-        public static string GetExcelData(string filename, bool isHeaderOn)
+        public static string GetExcelData(string filename)
         {
             List<Mapping> mappings = new List<Mapping>();
 
@@ -18,7 +18,7 @@ namespace Offerten_Helper
             mappings.Add(new Mapping("RandomTextfield", "B32"));
             mappings.Add(new Mapping("RandomTextfield", "B33"));
 
-            return Helper.ReadExcelSheetDefinedCells(filename, mappings, isHeaderOn);
+            return Helper.GetDefinedCellsValues(filename, mappings);
         }
     }
 }

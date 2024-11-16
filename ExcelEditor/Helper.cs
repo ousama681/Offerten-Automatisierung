@@ -35,10 +35,37 @@ namespace ExcelEditor
 
 
 
-        public static string ReadExcelSheetDefinedCells(string fname, List<Mapping> definedCells, bool firstRowIsHeader = true)
+        //public static string ReadExcelSheetDefinedCells(string fname, List<Mapping> definedCells, bool firstRowIsHeader = true)
+        //{
+        //    List<string> Headers = new List<string>();
+        //    DataTable dt = new DataTable();
+        //    string output = "";
+
+        //    using (SpreadsheetDocument doc = SpreadsheetDocument.Open(fname, false))
+        //    {
+        //        Sheet sheet = doc.WorkbookPart.Workbook.Sheets.GetFirstChild<Sheet>();
+        //        Worksheet worksheet = (doc.WorkbookPart.GetPartById(sheet.Id.Value) as WorksheetPart).Worksheet;
+        //        IEnumerable<Row> rows = worksheet.GetFirstChild<SheetData>().Descendants<Row>();
+        //        int counter = 0;
+
+        //        IEnumerable<Cell> cells = worksheet.GetFirstChild<SheetData>().Descendants<Cell>();
+
+        //        foreach (Cell cell in cells)
+        //        {
+        //            if (definedCells.Contains(new Mapping("", cell.CellReference)))
+        //            {
+        //                string txtField = definedCells.Where(map => map.CellReference.Equals(cell.CellReference)).First().TxtField;
+
+        //                output += cell.CellReference + ": " + GetCellValue(doc, cell) + " ==> " + txtField + "\r\n";
+        //            }
+        //        }
+
+        //    }
+        //    return output;
+        //}
+
+        public static string GetDefinedCellsValues(string fname, List<Mapping> definedCells)
         {
-            List<string> Headers = new List<string>();
-            DataTable dt = new DataTable();
             string output = "";
 
             using (SpreadsheetDocument doc = SpreadsheetDocument.Open(fname, false))
@@ -46,22 +73,33 @@ namespace ExcelEditor
                 Sheet sheet = doc.WorkbookPart.Workbook.Sheets.GetFirstChild<Sheet>();
                 Worksheet worksheet = (doc.WorkbookPart.GetPartById(sheet.Id.Value) as WorksheetPart).Worksheet;
                 IEnumerable<Row> rows = worksheet.GetFirstChild<SheetData>().Descendants<Row>();
-                int counter = 0;
-
                 IEnumerable<Cell> cells = worksheet.GetFirstChild<SheetData>().Descendants<Cell>();
 
-                foreach (Cell cell in cells)
+                foreach (Mapping map in definedCells)
                 {
-                    if (definedCells.Contains(new Mapping("", cell.CellReference)))
-                    {
-                        string txtField = definedCells.Where(map => map.CellReference.Equals(cell.CellReference)).First().TxtField;
+                    string cellValue = GetCellValueByReference(doc, map.CellReference);
 
-                        output += cell.CellReference + ": " + GetCellValue(doc, cell) + " ==> " + txtField + "\r\n";
-                    }
+                    output += map.CellReference + ": " + cellValue + " ==> " + map.TxtField + "\r\n";
                 }
 
             }
             return output;
+        }
+
+        public static string GetCellValueByReference(SpreadsheetDocument doc, string cellReference)
+        {
+            string output = "";
+
+            Sheet sheet = doc.WorkbookPart.Workbook.Sheets.GetFirstChild<Sheet>();
+            Worksheet worksheet = (doc.WorkbookPart.GetPartById(sheet.Id.Value) as WorksheetPart).Worksheet;
+            IEnumerable<Row> rows = worksheet.GetFirstChild<SheetData>().Descendants<Row>();
+            int counter = 0;
+
+            IEnumerable<Cell> cells = worksheet.GetFirstChild<SheetData>().Descendants<Cell>();
+
+            Cell foundCell = cells.Where(cell => cell.CellReference.Equals(cellReference)).Single();
+
+            return foundCell.CellValue.InnerText;
         }
 
         private static string GetCellValue(SpreadsheetDocument doc, Cell cell)
