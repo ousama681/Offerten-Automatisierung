@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelEditor", "..\ExcelEdit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Offerten Helper", "..\Offerten Helper\Offerten Helper.csproj", "{35382DF0-A6E1-4E92-BB73-05FF30C4B1AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForExcelEditor", "..\TestForExcelEditor\TestForExcelEditor.csproj", "{667B2D4F-541B-4CAB-80BE-AD357F743B3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\TestForExcelEditor\UnitTests.csproj", "{667B2D4F-541B-4CAB-80BE-AD357F743B3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

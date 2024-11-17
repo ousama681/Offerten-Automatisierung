@@ -1,6 +1,6 @@
 using static ExcelEditor.Helper;
 
-namespace TestForExcelEditor
+namespace UnitTests
 {
     [TestFixture]
     public class Tests
