@@ -16,12 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-     
      - name: Debug Directory Contents
-      run: |
-        pwd
-        ls -R
-    
+      run: pwd ls -R
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
