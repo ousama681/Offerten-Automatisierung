@@ -43,11 +43,14 @@
             TxtPptTxtField = new TextBox();
             TxtSaveLocation = new TextBox();
             TxtNameNewFile = new TextBox();
-            TxtMappings = new TextBox();
             TxtTestField = new TextBox();
             LblTesting = new Label();
             CmdTest = new Button();
             CmdNewMapping = new Button();
+            LstMappings = new ListBox();
+            CmdSaveMappingFile = new Button();
+            CmdLoadMappingFile = new Button();
+            LblMappingfileName = new Label();
             SuspendLayout();
             // 
             // LblExcelFile
@@ -172,14 +175,6 @@
             TxtNameNewFile.Size = new Size(760, 23);
             TxtNameNewFile.TabIndex = 14;
             // 
-            // TxtMappings
-            // 
-            TxtMappings.Location = new Point(12, 159);
-            TxtMappings.Multiline = true;
-            TxtMappings.Name = "TxtMappings";
-            TxtMappings.Size = new Size(201, 194);
-            TxtMappings.TabIndex = 15;
-            // 
             // TxtTestField
             // 
             TxtTestField.Location = new Point(10, 473);
@@ -215,17 +210,58 @@
             CmdNewMapping.TabIndex = 19;
             CmdNewMapping.Text = "Create New Mapping";
             CmdNewMapping.UseVisualStyleBackColor = true;
+            CmdNewMapping.Click += CmdNewMapping_Click;
+            // 
+            // LstMappings
+            // 
+            LstMappings.FormattingEnabled = true;
+            LstMappings.ItemHeight = 15;
+            LstMappings.Location = new Point(10, 159);
+            LstMappings.Name = "LstMappings";
+            LstMappings.Size = new Size(196, 184);
+            LstMappings.TabIndex = 20;
+            // 
+            // CmdSaveMappingFile
+            // 
+            CmdSaveMappingFile.Location = new Point(231, 291);
+            CmdSaveMappingFile.Name = "CmdSaveMappingFile";
+            CmdSaveMappingFile.Size = new Size(142, 23);
+            CmdSaveMappingFile.TabIndex = 23;
+            CmdSaveMappingFile.Text = "Save Mappings";
+            CmdSaveMappingFile.UseVisualStyleBackColor = true;
+            CmdSaveMappingFile.Click += CmdSaveMappingFile_Click;
+            // 
+            // CmdLoadMappingFile
+            // 
+            CmdLoadMappingFile.Location = new Point(525, 291);
+            CmdLoadMappingFile.Name = "CmdLoadMappingFile";
+            CmdLoadMappingFile.Size = new Size(149, 23);
+            CmdLoadMappingFile.TabIndex = 24;
+            CmdLoadMappingFile.Text = "Load Mappings";
+            CmdLoadMappingFile.UseVisualStyleBackColor = true;
+            CmdLoadMappingFile.Click += CmdLoadMappingFile_Click;
+            // 
+            // LblMappingfileName
+            // 
+            LblMappingfileName.AutoSize = true;
+            LblMappingfileName.Location = new Point(81, 141);
+            LblMappingfileName.Name = "LblMappingfileName";
+            LblMappingfileName.Size = new Size(0, 15);
+            LblMappingfileName.TabIndex = 25;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 777);
+            Controls.Add(LblMappingfileName);
+            Controls.Add(CmdLoadMappingFile);
+            Controls.Add(CmdSaveMappingFile);
+            Controls.Add(LstMappings);
             Controls.Add(CmdNewMapping);
             Controls.Add(CmdTest);
             Controls.Add(LblTesting);
             Controls.Add(TxtTestField);
-            Controls.Add(TxtMappings);
             Controls.Add(TxtNameNewFile);
             Controls.Add(TxtSaveLocation);
             Controls.Add(TxtPptTxtField);
@@ -264,10 +300,13 @@
         private TextBox TxtPptTxtField;
         private TextBox TxtSaveLocation;
         private TextBox TxtNameNewFile;
-        private TextBox TxtMappings;
         private TextBox TxtTestField;
         private Label LblTesting;
         private Button CmdTest;
         private Button CmdNewMapping;
+        private ListBox LstMappings;
+        private Button CmdSaveMappingFile;
+        private Button CmdLoadMappingFile;
+        private Label LblMappingfileName;
     }
 }
