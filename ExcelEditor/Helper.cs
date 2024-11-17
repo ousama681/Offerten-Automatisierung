@@ -99,7 +99,7 @@ namespace ExcelEditor
 
             Cell foundCell = cells.Where(cell => cell.CellReference.Equals(cellReference)).Single();
 
-            return foundCell.CellValue.InnerText;
+            return GetCellValue(doc, foundCell);
         }
 
         private static string GetCellValue(SpreadsheetDocument doc, Cell cell)
