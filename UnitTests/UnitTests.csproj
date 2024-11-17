@@ -17,9 +17,6 @@
     <PackageReference Include="NUnit.Analyzers" Version="3.9.0" />
     <PackageReference Include="NUnit.ConsoleRunner" Version="3.18.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-	  <None Include="TestFiles\TestFile.xlsx">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -29,5 +26,11 @@
   <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
+	
+	<ItemGroup>
+		<None Include="TestFiles\TestFile.xlsx">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>
