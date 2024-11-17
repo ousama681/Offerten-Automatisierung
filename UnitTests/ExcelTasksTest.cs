@@ -24,18 +24,5 @@ namespace UnitTests
             // Assert
             Assert.AreEqual(result, "A1: Press ==> TextFieldA\r\nD27: Parallel ==> TextFieldB\r\nI16: Round ==> TextFieldC\r\nM23: 50000 ==> TextFieldD\r\n");
         }
-
-        [Test]
-        public void TestFoo()
-        {
-            // Arrange
-            int val = 4;
-
-            // Act
-            int result = val + 5;
-
-            // Assert
-            Assert.AreEqual(result, 9);
-        }
     }
 }
