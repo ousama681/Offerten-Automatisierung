@@ -26,9 +26,17 @@
   <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
-	
+
+  <ItemGroup>
+    <None Remove="C:\ZbwTechniker\6tSemester\Diplom Abschlussarbeit\Entwicklung\Offerten Automatisierung\UnitTests\..\TestFiles\TestFile.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\ZbwTechniker\6tSemester\Diplom Abschlussarbeit\Entwicklung\Offerten Automatisierung\UnitTests\..\TestFiles\TestFile.xlsx" />
+  </ItemGroup>
+
 	<ItemGroup>
-		<None Include="TestFiles\TestFile.xlsx">
+		<None Include="$(MSBuildProjectDirectory)\Testfiles\TestFile.xlsx">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
