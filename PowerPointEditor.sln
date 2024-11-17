@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelEditor", "..\ExcelEditor\ExcelEditor.csproj", "{86DC3E7A-CC56-4AA5-8538-86DEDD61CAAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelEditor", "ExcelEditor\ExcelEditor.csproj", "{86DC3E7A-CC56-4AA5-8538-86DEDD61CAAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Offerten Helper", "..\Offerten Helper\Offerten Helper.csproj", "{35382DF0-A6E1-4E92-BB73-05FF30C4B1AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Offerten Helper", "Offerten Helper\Offerten Helper.csproj", "{35382DF0-A6E1-4E92-BB73-05FF30C4B1AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\TestForExcelEditor\UnitTests.csproj", "{667B2D4F-541B-4CAB-80BE-AD357F743B3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "TestForExcelEditor\UnitTests.csproj", "{667B2D4F-541B-4CAB-80BE-AD357F743B3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
