@@ -9,7 +9,7 @@ namespace UnitTests
         public void TestGetDefinedCellsValues()
         {
             // Arrange
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Testfiles\TestFile.xlsx");
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestFiles", "TestFile.xlsx");
 
             List<Mapping> definedCells = new List<Mapping>{
                 new Mapping("TextFieldA", "A1"),
