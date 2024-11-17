@@ -64,6 +64,18 @@ namespace Offerten_Helper
             }
         }
 
+        public string CreateOutputforMappingFile()
+        {
+            string mappings = "";
+
+            foreach (var mapping in LstMappings.Items)
+            {
+                mappings += mapping.ToString() + ";";
+            }
+
+            return mappings;
+        }
+
         private void CmdSaveMappingFile_Click(object sender, EventArgs e)
         {
             {
@@ -79,12 +91,7 @@ namespace Offerten_Helper
                     {
                         string filePath = saveFileDialog.FileName;
 
-                        string mappings = "";
-
-                        foreach (var mapping in LstMappings.Items)
-                        {
-                            mappings += mapping.ToString() + ";";
-                        }
+                        string mappings = CreateOutputforMappingFile();
 
                         try
                         {

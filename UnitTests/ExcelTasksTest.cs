@@ -3,7 +3,7 @@ using static ExcelEditor.Helper;
 namespace UnitTests
 {
     [TestFixture]
-    public class Tests
+    public class ExcelTasksTest
     {
         [Test]
         public void TestGetDefinedCellsValues()

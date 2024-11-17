@@ -5,9 +5,11 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelEditor", "ExcelEditor\ExcelEditor.csproj", "{86DC3E7A-CC56-4AA5-8538-86DEDD61CAAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Offerten Helper", "Offerten Helper\Offerten Helper.csproj", "{35382DF0-A6E1-4E92-BB73-05FF30C4B1AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OffertenHelper", "OffertenHelper\OffertenHelper.csproj", "{35382DF0-A6E1-4E92-BB73-05FF30C4B1AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{667B2D4F-541B-4CAB-80BE-AD357F743B3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilHelpers", "UtilHelpers\UtilHelpers.csproj", "{5522D158-2C10-4F24-AAC9-358C6654F71A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{667B2D4F-541B-4CAB-80BE-AD357F743B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{667B2D4F-541B-4CAB-80BE-AD357F743B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{667B2D4F-541B-4CAB-80BE-AD357F743B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5522D158-2C10-4F24-AAC9-358C6654F71A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5522D158-2C10-4F24-AAC9-358C6654F71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5522D158-2C10-4F24-AAC9-358C6654F71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5522D158-2C10-4F24-AAC9-358C6654F71A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
