@@ -51,6 +51,8 @@
             CmdSaveMappingFile = new Button();
             CmdLoadMappingFile = new Button();
             LblMappingfileName = new Label();
+            CmdRemoveMapping = new Button();
+            CmdProcessPpt = new Button();
             SuspendLayout();
             // 
             // LblExcelFile
@@ -204,11 +206,11 @@
             // 
             // CmdNewMapping
             // 
-            CmdNewMapping.Location = new Point(230, 198);
+            CmdNewMapping.Location = new Point(230, 188);
             CmdNewMapping.Name = "CmdNewMapping";
             CmdNewMapping.Size = new Size(163, 23);
             CmdNewMapping.TabIndex = 19;
-            CmdNewMapping.Text = "Create New Mapping";
+            CmdNewMapping.Text = "Add New Mapping";
             CmdNewMapping.UseVisualStyleBackColor = true;
             CmdNewMapping.Click += CmdNewMapping_Click;
             // 
@@ -249,11 +251,33 @@
             LblMappingfileName.Size = new Size(0, 15);
             LblMappingfileName.TabIndex = 25;
             // 
+            // CmdRemoveMapping
+            // 
+            CmdRemoveMapping.Location = new Point(230, 217);
+            CmdRemoveMapping.Name = "CmdRemoveMapping";
+            CmdRemoveMapping.Size = new Size(163, 23);
+            CmdRemoveMapping.TabIndex = 26;
+            CmdRemoveMapping.Text = "Remove Mapping";
+            CmdRemoveMapping.UseVisualStyleBackColor = true;
+            CmdRemoveMapping.Click += CmdRemoveMapping_Click;
+            // 
+            // CmdProcessPpt
+            // 
+            CmdProcessPpt.Location = new Point(525, 217);
+            CmdProcessPpt.Name = "CmdProcessPpt";
+            CmdProcessPpt.Size = new Size(163, 23);
+            CmdProcessPpt.TabIndex = 27;
+            CmdProcessPpt.Text = "Process Powerpoint";
+            CmdProcessPpt.UseVisualStyleBackColor = true;
+            CmdProcessPpt.Click += CmdProcessPpt_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 777);
+            Controls.Add(CmdProcessPpt);
+            Controls.Add(CmdRemoveMapping);
             Controls.Add(LblMappingfileName);
             Controls.Add(CmdLoadMappingFile);
             Controls.Add(CmdSaveMappingFile);
@@ -308,5 +332,7 @@
         private Button CmdSaveMappingFile;
         private Button CmdLoadMappingFile;
         private Label LblMappingfileName;
+        private Button CmdRemoveMapping;
+        private Button CmdProcessPpt;
     }
 }

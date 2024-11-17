@@ -1,3 +1,5 @@
+using DocumentFormat.OpenXml.Spreadsheet;
+
 namespace Offerten_Helper
 {
     public partial class Form1 : Form
@@ -106,6 +108,48 @@ namespace Offerten_Helper
                     }
                 }
             }
+        }
+
+        private void CmdRemoveMapping_Click(object sender, EventArgs e)
+        {
+            if (LstMappings.SelectedItem != null)
+            {
+                LstMappings.Items.Remove(LstMappings.SelectedItem);
+            }
+        }
+
+        private void CmdProcessPpt_Click(object sender, EventArgs e)
+        {
+            // Map<Cell, Textfield>
+            Dictionary<string, string> mappings = CreateMappingDictionary();
+
+            // Map<Cell, CellValue>
+            Dictionary<string, string> cellRefValue = ExcelEditor.Helper.GetDictionaryCellRefAndValue(TxtExcelFile.Text, mappings.Keys.ToList());
+
+            // create another directory Key: CellReference Value: CellValue
+
+            InsertValuesInPowerpoint(mappings, cellRefValue);
+
+
+
+        }
+
+        private void InsertValuesInPowerpoint(Dictionary<string, string> mappings, Dictionary<string, string> cellRefValue)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Dictionary<string, string> CreateMappingDictionary()
+        {
+            Dictionary<string, string> mappings = new Dictionary<string, string>();
+
+            foreach (var item in LstMappings.Items)
+            {
+                string[] mapping = item.ToString().Split(" ==> ");
+                mappings.Add(mapping[0], mapping[1]);
+            }
+
+            return mappings;
         }
     }
 }

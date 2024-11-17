@@ -86,6 +86,29 @@ namespace ExcelEditor
             return output;
         }
 
+        public static Dictionary<string, string> GetDictionaryCellRefAndValue(string fname, List<string> definedCells)
+        {
+            List<string> cellValues = new List<string>();
+
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+
+            using (SpreadsheetDocument doc = SpreadsheetDocument.Open(fname, false))
+            {
+                Sheet sheet = doc.WorkbookPart.Workbook.Sheets.GetFirstChild<Sheet>();
+                Worksheet worksheet = (doc.WorkbookPart.GetPartById(sheet.Id.Value) as WorksheetPart).Worksheet;
+                IEnumerable<Row> rows = worksheet.GetFirstChild<SheetData>().Descendants<Row>();
+                IEnumerable<Cell> cells = worksheet.GetFirstChild<SheetData>().Descendants<Cell>();
+
+                foreach (string cellRef in definedCells)
+                {
+                    dic.Add(cellRef, GetCellValueByReference(doc, cellRef));
+                }
+
+            }
+            return dic;
+        }
+
+
         public static string GetCellValueByReference(SpreadsheetDocument doc, string cellReference)
         {
             string output = "";
