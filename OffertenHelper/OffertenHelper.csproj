@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExcelEditor\ExcelEditor.csproj" />
-    <ProjectReference Include="..\PowerPointEditor\PowerPointEditor.csproj" />
   </ItemGroup>
 
 </Project>
