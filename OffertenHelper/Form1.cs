@@ -1,5 +1,3 @@
-using DocumentFormat.OpenXml.Spreadsheet;
-
 namespace Offerten_Helper
 {
     public partial class Form1 : Form
@@ -12,12 +10,6 @@ namespace Offerten_Helper
         private void TxtPptTxtField_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void CmdTest_Click(object sender, EventArgs e)
-        {
-            string excelPath = TxtExcelFile.Text;
-            TxtTestField.Text = Controller.GetExcelData(excelPath);
         }
 
         private void CmdNewMapping_Click(object sender, EventArgs e)
@@ -121,14 +113,14 @@ namespace Offerten_Helper
         private void CmdProcessPpt_Click(object sender, EventArgs e)
         {
             // Map<Cell, Textfield>
-            Dictionary<string, string> mappings = CreateMappingDictionary();
+            //Dictionary<string, string> mappings = CreateMappingDictionary();
 
             // Map<Cell, CellValue>
-            Dictionary<string, string> cellRefValue = ExcelEditor.Helper.GetDictionaryCellRefAndValue(TxtExcelFile.Text, mappings.Keys.ToList());
+            //Dictionary<string, string> cellRefValue = ExcelEditor.Helper.GetDictionaryCellRefAndValue(TxtExcelFile.Text, mappings.Keys.ToList());
 
             // create another directory Key: CellReference Value: CellValue
 
-            InsertValuesInPowerpoint(mappings, cellRefValue);
+            //InsertValuesInPowerpoint(mappings, cellRefValue);
 
 
 
@@ -150,6 +142,30 @@ namespace Offerten_Helper
             }
 
             return mappings;
+        }
+
+        private void CmdReadExcelValues_Click(object sender, EventArgs e)
+        {
+            List<string> mappingValues = new List<string>();
+
+            foreach (var item in LstMappings.Items)
+            {
+                mappingValues.Add(item.ToString());
+            }
+
+
+
+            string excelPath = TxtExcelFile.Text;
+
+            try
+            {
+                TxtTestField.Text = Controller.GetExcelData(excelPath, mappingValues);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Warnung");
+
+            }
         }
     }
 }

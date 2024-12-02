@@ -45,7 +45,6 @@
             TxtNameNewFile = new TextBox();
             TxtTestField = new TextBox();
             LblTesting = new Label();
-            CmdTest = new Button();
             CmdNewMapping = new Button();
             LstMappings = new ListBox();
             CmdSaveMappingFile = new Button();
@@ -53,6 +52,7 @@
             LblMappingfileName = new Label();
             CmdRemoveMapping = new Button();
             CmdProcessPpt = new Button();
+            CmdReadExcelValues = new Button();
             SuspendLayout();
             // 
             // LblExcelFile
@@ -131,14 +131,16 @@
             // 
             TxtExcelFile.Location = new Point(10, 27);
             TxtExcelFile.Name = "TxtExcelFile";
-            TxtExcelFile.Size = new Size(760, 23);
+            TxtExcelFile.Size = new Size(605, 23);
             TxtExcelFile.TabIndex = 8;
+            TxtExcelFile.Text = "C:\\ZbwTechniker\\6tSemester\\Diplom Abschlussarbeit\\240913_Calculation Cheese Factory.xlsx";
             // 
             // TxtPpptFile
             // 
             TxtPpptFile.Location = new Point(10, 71);
             TxtPpptFile.Name = "TxtPpptFile";
-            TxtPpptFile.Size = new Size(760, 23);
+            TxtPpptFile.ReadOnly = true;
+            TxtPpptFile.Size = new Size(605, 23);
             TxtPpptFile.TabIndex = 9;
             // 
             // TxtSettingsFile
@@ -194,16 +196,6 @@
             LblTesting.TabIndex = 17;
             LblTesting.Text = "For Testing:";
             // 
-            // CmdTest
-            // 
-            CmdTest.Location = new Point(671, 476);
-            CmdTest.Name = "CmdTest";
-            CmdTest.Size = new Size(75, 23);
-            CmdTest.TabIndex = 18;
-            CmdTest.Text = "Excel lesen";
-            CmdTest.UseVisualStyleBackColor = true;
-            CmdTest.Click += CmdTest_Click;
-            // 
             // CmdNewMapping
             // 
             CmdNewMapping.Location = new Point(230, 188);
@@ -218,6 +210,7 @@
             // 
             LstMappings.FormattingEnabled = true;
             LstMappings.ItemHeight = 15;
+            LstMappings.Items.AddRange(new object[] { "CheeseVatType" });
             LstMappings.Location = new Point(10, 159);
             LstMappings.Name = "LstMappings";
             LstMappings.Size = new Size(196, 184);
@@ -271,11 +264,22 @@
             CmdProcessPpt.UseVisualStyleBackColor = true;
             CmdProcessPpt.Click += CmdProcessPpt_Click;
             // 
+            // CmdReadExcelValues
+            // 
+            CmdReadExcelValues.Location = new Point(666, 473);
+            CmdReadExcelValues.Name = "CmdReadExcelValues";
+            CmdReadExcelValues.Size = new Size(75, 23);
+            CmdReadExcelValues.TabIndex = 28;
+            CmdReadExcelValues.Text = "Excel lesen";
+            CmdReadExcelValues.UseVisualStyleBackColor = true;
+            CmdReadExcelValues.Click += CmdReadExcelValues_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 777);
+            Controls.Add(CmdReadExcelValues);
             Controls.Add(CmdProcessPpt);
             Controls.Add(CmdRemoveMapping);
             Controls.Add(LblMappingfileName);
@@ -283,7 +287,6 @@
             Controls.Add(CmdSaveMappingFile);
             Controls.Add(LstMappings);
             Controls.Add(CmdNewMapping);
-            Controls.Add(CmdTest);
             Controls.Add(LblTesting);
             Controls.Add(TxtTestField);
             Controls.Add(TxtNameNewFile);
@@ -326,7 +329,6 @@
         private TextBox TxtNameNewFile;
         private TextBox TxtTestField;
         private Label LblTesting;
-        private Button CmdTest;
         private Button CmdNewMapping;
         private ListBox LstMappings;
         private Button CmdSaveMappingFile;
@@ -334,5 +336,6 @@
         private Label LblMappingfileName;
         private Button CmdRemoveMapping;
         private Button CmdProcessPpt;
+        private Button CmdReadExcelValues;
     }
 }

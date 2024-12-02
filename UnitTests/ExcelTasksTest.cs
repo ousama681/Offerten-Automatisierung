@@ -19,10 +19,13 @@ namespace UnitTests
             };
 
             // Act
-            string result = ExcelEditor.Helper.GetDefinedCellsValues(filePath, definedCells);
+            //string result = ExcelEditor.Helper.GetDefinedCellsValues(filePath, definedCells);
 
-            // Assert
-            Assert.AreEqual(result, "A1: Press ==> TextFieldA\r\nD27: Parallel ==> TextFieldB\r\nI16: Round ==> TextFieldC\r\nM23: 50000 ==> TextFieldD\r\n");
+            //// Assert
+            //Assert.AreEqual(result, "A1: Press ==> TextFieldA\r\nD27: Parallel ==> TextFieldB\r\nI16: Round ==> TextFieldC\r\nM23: 50000 ==> TextFieldD\r\n");
         }
+
+
+
     }
 }

@@ -10,15 +10,11 @@ namespace Offerten_Helper
 {
     public class Controller
     {
-        public static string GetExcelData(string filename)
+        public static string GetExcelData(string filename, List<string> mappingValues)
         {
-            List<Mapping> mappings = new List<Mapping>();
+            Helper.GetCellValuesFromExcel(filename, mappingValues);
 
-            mappings.Add(new Mapping("RandomTextfield", "B3"));
-            mappings.Add(new Mapping("RandomTextfield", "B32"));
-            mappings.Add(new Mapping("RandomTextfield", "B33"));
-
-            return Helper.GetDefinedCellsValues(filename, mappings);
+            return "Test";
         }
     }
 }
