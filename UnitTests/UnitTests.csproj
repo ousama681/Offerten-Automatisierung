@@ -40,6 +40,9 @@
 		<None Include="$(MSBuildProjectDirectory)\Testfiles\TestFile.xlsx">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Include="$(MSBuildProjectDirectory)\Testfiles\TestFileKeyNames.xlsx">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>
