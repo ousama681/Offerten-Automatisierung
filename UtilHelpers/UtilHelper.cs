@@ -14,7 +14,7 @@ namespace UtilHelper
 
             foreach (var keyname in keynames)
             {
-                mapping += keynames.ToString() + ";";
+                mapping += keyname.ToString() + ";";
             }
 
             return mapping;
