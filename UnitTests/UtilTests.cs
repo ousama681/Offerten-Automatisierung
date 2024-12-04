@@ -17,17 +17,42 @@ namespace UnitTests
         {
             // Arrange
 
-            List<string> items = new List<string>();
-
-            items.Add("A3 ==> TextFieldA");
-            items.Add("D23 ==> TextFieldB");
-            items.Add("G35 ==> TextFieldC");
+            IList<string> keynames = new List<string>{
+                "MachineType",
+                "LitreAmount",
+                "DurationDays",
+                "TotalPrice",
+                "BatchInformation"
+            };
 
             // act
-            string result = UtilHelper.UtilHelper.CreateOutputforMappingFile(items);
+            string result = UtilHelper.UtilHelper.CreateOutputforMappingFile(keynames);
 
             // Assert
-            Assert.AreEqual(result, "A3 ==> TextFieldA;D23 ==> TextFieldB;G35 ==> TextFieldC;");
+            Assert.AreEqual(result, "MachineType;LitreAmount;DurationDays;TotalPrice;BatchInformation;");
+        }
+
+
+        [Test]
+        public void TestGetDefinedCellsValues()
+        {
+            // Arrange
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Testfiles", "TestFileKeyNames.xlsx");
+
+            IList<string> keynames = new List<string>{
+                "MachineType",
+                "LitreAmount",
+                "DurationDays",
+                "TotalPrice",
+                "BatchInformation"
+            };
+
+            // Act
+            IList<string> result = UtilHelper.UtilHelper.GetListOfKeyNames(filePath);
+
+            // Assert
+            // The benfit of AreEquivalent() is the ability to check the existence of the strings while the order isnt important.
+            CollectionAssert.AreEquivalent(keynames, result);
         }
     }
 }
