@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -18,7 +18,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UtilHelpers\UtilHelpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="C:\ZbwTechniker\6tSemester\Diplom Abschlussarbeit\Entwicklung\LatestOffertenAutomatisierung\Offerten-Automatisierung\IntegrationTests\Testfiles\TestFile.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\ZbwTechniker\6tSemester\Diplom Abschlussarbeit\Entwicklung\LatestOffertenAutomatisierung\Offerten-Automatisierung\IntegrationTests\Testfiles\TestFile.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\ZbwTechniker\6tSemester\Diplom Abschlussarbeit\Entwicklung\LatestOffertenAutomatisierung\Offerten-Automatisierung\IntegrationTests\Testfiles\TestFile.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\ZbwTechniker\6tSemester\Diplom Abschlussarbeit\Entwicklung\LatestOffertenAutomatisierung\Offerten-Automatisierung\IntegrationTests\Testfiles\TestFile.xlsx" />
+  </ItemGroup>
+	
+	<ItemGroup>
+		<None Include="$(MSBuildProjectDirectory)\Testfiles\Kundenofferte.pptx">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="$(MSBuildProjectDirectory)\Testfiles\TestFileKeyNames.xlsx">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 </Project>

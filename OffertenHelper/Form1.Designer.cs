@@ -34,12 +34,10 @@
             LblMappings = new Label();
             LblSaveLocation = new Label();
             LblNewName = new Label();
-            LblCells = new Label();
             LblTextfield = new Label();
             TxtExcelFile = new TextBox();
             TxtPpptFile = new TextBox();
             TxtSettingsFile = new TextBox();
-            TxtCells = new TextBox();
             TxtPptTxtField = new TextBox();
             TxtSaveLocation = new TextBox();
             TxtNameNewFile = new TextBox();
@@ -53,6 +51,8 @@
             CmdRemoveMapping = new Button();
             CmdProcessPpt = new Button();
             CmdReadExcelValues = new Button();
+            CmdLoadExcelFile = new Button();
+            CmdLoadPptFile = new Button();
             SuspendLayout();
             // 
             // LblExcelFile
@@ -109,19 +109,10 @@
             LblNewName.TabIndex = 5;
             LblNewName.Text = "Name of new PowerPoint:";
             // 
-            // LblCells
-            // 
-            LblCells.AutoSize = true;
-            LblCells.Location = new Point(230, 141);
-            LblCells.Name = "LblCells";
-            LblCells.Size = new Size(35, 15);
-            LblCells.TabIndex = 6;
-            LblCells.Text = "Cells:";
-            // 
             // LblTextfield
             // 
             LblTextfield.AutoSize = true;
-            LblTextfield.Location = new Point(525, 141);
+            LblTextfield.Location = new Point(231, 141);
             LblTextfield.Name = "LblTextfield";
             LblTextfield.Size = new Size(54, 15);
             LblTextfield.TabIndex = 7;
@@ -129,11 +120,12 @@
             // 
             // TxtExcelFile
             // 
+            TxtExcelFile.Enabled = false;
             TxtExcelFile.Location = new Point(10, 27);
             TxtExcelFile.Name = "TxtExcelFile";
+            TxtExcelFile.ScrollBars = ScrollBars.Both;
             TxtExcelFile.Size = new Size(605, 23);
             TxtExcelFile.TabIndex = 8;
-            TxtExcelFile.Text = "C:\\ZbwTechniker\\6tSemester\\Diplom Abschlussarbeit\\240913_Calculation Cheese Factory.xlsx";
             // 
             // TxtPpptFile
             // 
@@ -150,16 +142,9 @@
             TxtSettingsFile.Size = new Size(760, 23);
             TxtSettingsFile.TabIndex = 10;
             // 
-            // TxtCells
-            // 
-            TxtCells.Location = new Point(230, 159);
-            TxtCells.Name = "TxtCells";
-            TxtCells.Size = new Size(236, 23);
-            TxtCells.TabIndex = 11;
-            // 
             // TxtPptTxtField
             // 
-            TxtPptTxtField.Location = new Point(525, 159);
+            TxtPptTxtField.Location = new Point(231, 159);
             TxtPptTxtField.Name = "TxtPptTxtField";
             TxtPptTxtField.Size = new Size(245, 23);
             TxtPptTxtField.TabIndex = 12;
@@ -274,11 +259,33 @@
             CmdReadExcelValues.UseVisualStyleBackColor = true;
             CmdReadExcelValues.Click += CmdReadExcelValues_Click;
             // 
+            // CmdLoadExcelFile
+            // 
+            CmdLoadExcelFile.Location = new Point(621, 27);
+            CmdLoadExcelFile.Name = "CmdLoadExcelFile";
+            CmdLoadExcelFile.Size = new Size(149, 23);
+            CmdLoadExcelFile.TabIndex = 29;
+            CmdLoadExcelFile.Text = "Load Excel File";
+            CmdLoadExcelFile.UseVisualStyleBackColor = true;
+            CmdLoadExcelFile.Click += CmdLoadExcelFile_Click;
+            // 
+            // CmdLoadPptFile
+            // 
+            CmdLoadPptFile.Location = new Point(621, 70);
+            CmdLoadPptFile.Name = "CmdLoadPptFile";
+            CmdLoadPptFile.Size = new Size(149, 23);
+            CmdLoadPptFile.TabIndex = 30;
+            CmdLoadPptFile.Text = "Load Powerpoint File";
+            CmdLoadPptFile.UseVisualStyleBackColor = true;
+            CmdLoadPptFile.Click += CmdLoadPptFile_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 777);
+            Controls.Add(CmdLoadPptFile);
+            Controls.Add(CmdLoadExcelFile);
             Controls.Add(CmdReadExcelValues);
             Controls.Add(CmdProcessPpt);
             Controls.Add(CmdRemoveMapping);
@@ -292,12 +299,10 @@
             Controls.Add(TxtNameNewFile);
             Controls.Add(TxtSaveLocation);
             Controls.Add(TxtPptTxtField);
-            Controls.Add(TxtCells);
             Controls.Add(TxtSettingsFile);
             Controls.Add(TxtPpptFile);
             Controls.Add(TxtExcelFile);
             Controls.Add(LblTextfield);
-            Controls.Add(LblCells);
             Controls.Add(LblNewName);
             Controls.Add(LblSaveLocation);
             Controls.Add(LblMappings);
@@ -318,12 +323,10 @@
         private Label LblMappings;
         private Label LblSaveLocation;
         private Label LblNewName;
-        private Label LblCells;
         private Label LblTextfield;
         private TextBox TxtExcelFile;
         private TextBox TxtPpptFile;
         private TextBox TxtSettingsFile;
-        private TextBox TxtCells;
         private TextBox TxtPptTxtField;
         private TextBox TxtSaveLocation;
         private TextBox TxtNameNewFile;
@@ -337,5 +340,7 @@
         private Button CmdRemoveMapping;
         private Button CmdProcessPpt;
         private Button CmdReadExcelValues;
+        private Button CmdLoadExcelFile;
+        private Button CmdLoadPptFile;
     }
 }

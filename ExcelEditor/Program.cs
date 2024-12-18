@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using ShapeCrawler;
+using UtilHelper;
 
 namespace ExcelEditor
 {
@@ -7,23 +8,27 @@ namespace ExcelEditor
     {
         static void Main(string[] args)
         {
+            string pptFile = "C:\\ZbwTechniker\\6tSemester\\Diplom Abschlussarbeit\\Entwicklung\\LatestOffertenAutomatisierung\\Offerten-Automatisierung\\IntegrationTests\\Testfiles\\Kundenofferte.pptx";
+            string xlsFile = "C:\\ZbwTechniker\\6tSemester\\Diplom Abschlussarbeit\\Entwicklung\\LatestOffertenAutomatisierung\\Offerten-Automatisierung\\IntegrationTests\\Testfiles\\TestFileKeyNames.xlsx";
 
-            // Open the existing presentation
-            var presentation = new Presentation("C:\\ZbwTechniker\\6tSemester\\Diplom Abschlussarbeit\\20240904_Budget Kalt Cheese Technology.pptx");
+            UtilHelper.UtilHelper.ProcessPowerpoint(pptFile, xlsFile);
 
-            foreach (var slide in presentation.Slides)
-            {
+            //// Open the existing presentation
+            //var presentation = new Presentation("C:\\ZbwTechniker\\6tSemester\\Diplom Abschlussarbeit\\20240904_Budget Kalt Cheese Technology.pptx");
 
-                foreach (var shape in slide.Shapes)
-                {
-                    if (shape.Name.Equals("MachineType"))
-                    {
-                        shape.TextBox!.Text = "Dies ist ein Platzhaltertext um das bearbeiten per code zu testen.";
-                    }
-                }
-      
-            }
-            presentation.Save();
+            //foreach (var slide in presentation.Slides)
+            //{
+
+            //    foreach (var shape in slide.Shapes)
+            //    {
+            //        if (shape.Name.Equals("MachineType"))
+            //        {
+            //            shape.TextBox!.Text = "Dies ist ein Platzhaltertext um das bearbeiten per code zu testen.";
+            //        }
+            //    }
+
+            //}
+            //presentation.Save();
         }
     }
 }

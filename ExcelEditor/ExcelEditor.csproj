@@ -12,4 +12,8 @@
     <PackageReference Include="ShapeCrawler" Version="0.57.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UtilHelpers\UtilHelpers.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -61,7 +61,7 @@ namespace UtilHelper
             return keyvalueMapping;
         }
 
-        public static Dictionary<string, string> GetCellValuesFromExcel(string fileName, List<string> mappingKeys)
+        public static Dictionary<string, string> GetCellValuesFromExcel(string fileName, IList<string> mappingKeys)
         {
             Dictionary<string, string> mappedValues = new Dictionary<string, string>();
 
@@ -168,6 +168,68 @@ namespace UtilHelper
                     }
                 }
             }
+        }
+
+        public static string ProcessPowerpoint(string pptFile, string xlsFile)
+        {
+
+            //pptFile = "C:\\ZbwTechniker\\6tSemester\\Diplom Abschlussarbeit\\Entwicklung\\LatestOffertenAutomatisierung\\Offerten-Automatisierung\\IntegrationTests\\Testfiles\\Kundenofferte.pptx";
+
+            using (SpreadsheetDocument doc = SpreadsheetDocument.Open(xlsFile, false))
+            {
+                WorkbookPart workbookPart = doc.WorkbookPart;
+                DefinedNames definedNames = workbookPart.Workbook.DefinedNames;
+                IList<string> keynames = new List<string>();
+
+                if (definedNames != null)
+                {
+                    var presentation = new Presentation(pptFile);
+
+
+                    foreach (DefinedName keyname in definedNames)
+                    {
+                        foreach (var slide in presentation.Slides)
+                        {
+
+                            foreach (var shape in slide.Shapes)
+                            {
+                                if (shape.Name.Equals(keyname.Name))
+                                {
+                                    shape.TextBox!.Text = GetCellValueFromDefinedName(workbookPart, keyname.Name);
+                                }
+                            }
+
+                        }
+                        //keynames.Add(keyname.Name.ToString());
+                    }
+
+                    string toReplace = "_Processed.pptx";
+
+                    string newPptFile = pptFile.Replace(".pptx", toReplace);
+
+                    presentation.SaveAs(newPptFile);
+
+                    return newPptFile;
+                }
+                return "";
+            }
+
+            //// Open the existing presentation
+            //var presentation = new Presentation(filename);
+
+            //foreach (var slide in presentation.Slides)
+            //{
+
+            //    foreach (var shape in slide.Shapes)
+            //    {
+            //        if (shape.Name.Equals("MachineType"))
+            //        {
+            //            shape.TextBox!.Text = "Dies ist ein Platzhaltertext um das bearbeiten per code zu testen.";
+            //        }
+            //    }
+
+            //}
+            //presentation.Save();
         }
 
 

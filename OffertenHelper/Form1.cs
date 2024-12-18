@@ -14,7 +14,7 @@ namespace Offerten_Helper
 
         private void CmdNewMapping_Click(object sender, EventArgs e)
         {
-            LstMappings.Items.Add(TxtCells.Text + " ==> " + TxtPptTxtField.Text);
+            LstMappings.Items.Add(TxtPptTxtField.Text);
         }
 
         private void CmdLoadMappingFile_Click(object sender, EventArgs e)
@@ -112,18 +112,7 @@ namespace Offerten_Helper
 
         private void CmdProcessPpt_Click(object sender, EventArgs e)
         {
-            // Map<Cell, Textfield>
-            //Dictionary<string, string> mappings = CreateMappingDictionary();
-
-            // Map<Cell, CellValue>
-            //Dictionary<string, string> cellRefValue = ExcelEditor.Helper.GetDictionaryCellRefAndValue(TxtExcelFile.Text, mappings.Keys.ToList());
-
-            // create another directory Key: CellReference Value: CellValue
-
-            //InsertValuesInPowerpoint(mappings, cellRefValue);
-
-
-
+            UtilHelper.UtilHelper.ProcessPowerpoint(TxtPpptFile.Text, TxtExcelFile.Text);
         }
 
         private void InsertValuesInPowerpoint(Dictionary<string, string> mappings, Dictionary<string, string> cellRefValue)
@@ -165,6 +154,42 @@ namespace Offerten_Helper
             {
                 MessageBox.Show(exc.Message, "Warnung");
 
+            }
+        }
+
+        private void CmdLoadExcelFile_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                string[] mappings = new string[] { };
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    TxtExcelFile.Text = openFileDialog.FileName;
+                }
+            }
+        }
+
+        private void CmdLoadPptFile_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                string[] mappings = new string[] { };
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    TxtPpptFile.Text = openFileDialog.FileName;
+                }
             }
         }
     }
