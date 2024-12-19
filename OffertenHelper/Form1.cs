@@ -7,7 +7,7 @@ namespace Offerten_Helper
             InitializeComponent();
         }
 
-       
+
         private void CmdProcessPpt_Click(object sender, EventArgs e)
         {
             UtilHelper.UtilHelper.ProcessPowerpoint(TxtPpptFile.Text, TxtExcelFile.Text);
@@ -47,6 +47,11 @@ namespace Offerten_Helper
                     TxtPpptFile.Text = openFileDialog.FileName;
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
