@@ -87,7 +87,7 @@ namespace UtilHelper
                     {
                         if (dn.Name.Equals(key))
                         {
-                            string cellReference = dn.Text;
+                            string cellReference = dn.Name;
                             string cellValue = GetCellValueFromDefinedName(workbookPart, dn.Name);
                             mappedValues.Add(cellReference, cellValue);
                         }
