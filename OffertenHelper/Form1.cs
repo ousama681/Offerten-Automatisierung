@@ -10,7 +10,32 @@ namespace Offerten_Helper
 
         private void CmdProcessPpt_Click(object sender, EventArgs e)
         {
-            UtilHelper.UtilHelper.ProcessPowerpoint(TxtPpptFile.Text, TxtExcelFile.Text);
+            string filePath = UtilHelper.UtilHelper.ProcessPowerpoint(TxtPpptFile.Text, TxtExcelFile.Text);
+
+            DialogResult dialogResult = MessageBox.Show("Offer created. Would you like to review the offer?", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    if (File.Exists(filePath))
+                    {
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = filePath,
+                            UseShellExecute = true
+                        });
+                    }
+                    else
+                    {
+                        MessageBox.Show("Die angegebene Datei existiert nicht.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Fehler beim Öffnen der Datei: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void CmdLoadExcelFile_Click(object sender, EventArgs e)
@@ -18,8 +43,8 @@ namespace Offerten_Helper
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
+                openFileDialog.Filter = "Excel Files|*.xlsx;";
+                openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
                 string[] mappings = new string[] { };
@@ -36,8 +61,8 @@ namespace Offerten_Helper
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
+                openFileDialog.Filter = "Powerpoint Files|*.pptx;*.pptx";
+                openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
                 string[] mappings = new string[] { };
@@ -52,6 +77,24 @@ namespace Offerten_Helper
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void CmdSaveLocation_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.pptx";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                string[] mappings = new string[] { };
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    TxtSaveLocation.Text = openFileDialog.FileName;
+                }
+            }
         }
     }
 }

@@ -63,9 +63,9 @@ namespace Offerten_Helper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Excel_Logo_40_40 {
+        internal static System.Drawing.Bitmap Excel_Logo_25_25 {
             get {
-                object obj = ResourceManager.GetObject("Excel_Logo_40_40", resourceCulture);
+                object obj = ResourceManager.GetObject("Excel_Logo_25_25", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Offerten_Helper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Excel_Logo_50_50 {
+        internal static System.Drawing.Bitmap FloppyDisk_Logo_25_25 {
             get {
-                object obj = ResourceManager.GetObject("Excel_Logo_50_50", resourceCulture);
+                object obj = ResourceManager.GetObject("FloppyDisk_Logo_25_25", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,29 +83,9 @@ namespace Offerten_Helper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FloppyDisk_Logo_50_50 {
+        internal static System.Drawing.Bitmap PowerPoint_Logo_25_25 {
             get {
-                object obj = ResourceManager.GetObject("FloppyDisk_Logo_50_50", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PowerPoint_Logo_40_40 {
-            get {
-                object obj = ResourceManager.GetObject("PowerPoint_Logo_40_40", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PowerPoint_Logo_50_50 {
-            get {
-                object obj = ResourceManager.GetObject("PowerPoint_Logo_50_50", resourceCulture);
+                object obj = ResourceManager.GetObject("PowerPoint_Logo_25_25", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

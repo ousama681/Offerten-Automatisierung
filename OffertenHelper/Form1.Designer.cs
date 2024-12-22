@@ -39,22 +39,22 @@
             CmdProcessPpt = new Button();
             CmdLoadExcelFile = new Button();
             CmdLoadPptFile = new Button();
-            ImgExcelLogo = new PictureBox();
-            ImgPowerPointLogo = new PictureBox();
             CmdSaveLocation = new Button();
-            ImgSaveDiskLogo = new PictureBox();
             errorProvider1 = new ErrorProvider(components);
-            ((System.ComponentModel.ISupportInitialize)ImgExcelLogo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ImgPowerPointLogo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ImgSaveDiskLogo).BeginInit();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // LblExcelFile
             // 
             LblExcelFile.AutoSize = true;
             LblExcelFile.Font = new Font("Ebrima", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblExcelFile.Location = new Point(63, 11);
+            LblExcelFile.Location = new Point(228, 315);
             LblExcelFile.Name = "LblExcelFile";
             LblExcelFile.Size = new Size(71, 21);
             LblExcelFile.TabIndex = 0;
@@ -64,7 +64,7 @@
             // 
             LblPptFile.AutoSize = true;
             LblPptFile.Font = new Font("Ebrima", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblPptFile.Location = new Point(63, 77);
+            LblPptFile.Location = new Point(490, 333);
             LblPptFile.Name = "LblPptFile";
             LblPptFile.Size = new Size(121, 21);
             LblPptFile.TabIndex = 1;
@@ -74,7 +74,7 @@
             // 
             LblSaveLocation.AutoSize = true;
             LblSaveLocation.Font = new Font("Ebrima", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblSaveLocation.Location = new Point(63, 140);
+            LblSaveLocation.Location = new Point(314, 333);
             LblSaveLocation.Name = "LblSaveLocation";
             LblSaveLocation.Size = new Size(109, 21);
             LblSaveLocation.TabIndex = 4;
@@ -83,15 +83,16 @@
             // TxtExcelFile
             // 
             TxtExcelFile.Enabled = false;
-            TxtExcelFile.Location = new Point(63, 39);
+            TxtExcelFile.Location = new Point(40, 12);
             TxtExcelFile.Name = "TxtExcelFile";
+            TxtExcelFile.ReadOnly = true;
             TxtExcelFile.ScrollBars = ScrollBars.Both;
             TxtExcelFile.Size = new Size(591, 23);
             TxtExcelFile.TabIndex = 8;
             // 
             // TxtPpptFile
             // 
-            TxtPpptFile.Location = new Point(63, 104);
+            TxtPpptFile.Location = new Point(38, 86);
             TxtPpptFile.Name = "TxtPpptFile";
             TxtPpptFile.ReadOnly = true;
             TxtPpptFile.Size = new Size(591, 23);
@@ -99,15 +100,16 @@
             // 
             // TxtSaveLocation
             // 
-            TxtSaveLocation.Location = new Point(63, 167);
+            TxtSaveLocation.Location = new Point(40, 156);
             TxtSaveLocation.Name = "TxtSaveLocation";
+            TxtSaveLocation.ReadOnly = true;
             TxtSaveLocation.Size = new Size(591, 23);
             TxtSaveLocation.TabIndex = 13;
             // 
             // LblMappingfileName
             // 
             LblMappingfileName.AutoSize = true;
-            LblMappingfileName.Location = new Point(134, 175);
+            LblMappingfileName.Location = new Point(111, 164);
             LblMappingfileName.Name = "LblMappingfileName";
             LblMappingfileName.Size = new Size(0, 15);
             LblMappingfileName.TabIndex = 25;
@@ -115,7 +117,7 @@
             // CmdProcessPpt
             // 
             CmdProcessPpt.Font = new Font("Ebrima", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CmdProcessPpt.Location = new Point(63, 205);
+            CmdProcessPpt.Location = new Point(489, 185);
             CmdProcessPpt.Name = "CmdProcessPpt";
             CmdProcessPpt.Size = new Size(142, 38);
             CmdProcessPpt.TabIndex = 27;
@@ -125,7 +127,7 @@
             // 
             // CmdLoadExcelFile
             // 
-            CmdLoadExcelFile.Location = new Point(671, 39);
+            CmdLoadExcelFile.Location = new Point(40, 41);
             CmdLoadExcelFile.Name = "CmdLoadExcelFile";
             CmdLoadExcelFile.Size = new Size(149, 23);
             CmdLoadExcelFile.TabIndex = 29;
@@ -135,7 +137,7 @@
             // 
             // CmdLoadPptFile
             // 
-            CmdLoadPptFile.Location = new Point(671, 105);
+            CmdLoadPptFile.Location = new Point(38, 115);
             CmdLoadPptFile.Name = "CmdLoadPptFile";
             CmdLoadPptFile.Size = new Size(149, 23);
             CmdLoadPptFile.TabIndex = 30;
@@ -143,62 +145,58 @@
             CmdLoadPptFile.UseVisualStyleBackColor = true;
             CmdLoadPptFile.Click += CmdLoadPptFile_Click;
             // 
-            // ImgExcelLogo
-            // 
-            ImgExcelLogo.Image = Properties.Resources.Excel_Logo_40_40;
-            ImgExcelLogo.Location = new Point(12, 22);
-            ImgExcelLogo.MaximumSize = new Size(40, 40);
-            ImgExcelLogo.MinimumSize = new Size(40, 40);
-            ImgExcelLogo.Name = "ImgExcelLogo";
-            ImgExcelLogo.Size = new Size(40, 40);
-            ImgExcelLogo.TabIndex = 31;
-            ImgExcelLogo.TabStop = false;
-            // 
-            // ImgPowerPointLogo
-            // 
-            ImgPowerPointLogo.Image = Properties.Resources.PowerPoint_Logo_40_40;
-            ImgPowerPointLogo.Location = new Point(12, 87);
-            ImgPowerPointLogo.MaximumSize = new Size(40, 40);
-            ImgPowerPointLogo.MinimumSize = new Size(40, 40);
-            ImgPowerPointLogo.Name = "ImgPowerPointLogo";
-            ImgPowerPointLogo.Size = new Size(40, 40);
-            ImgPowerPointLogo.TabIndex = 32;
-            ImgPowerPointLogo.TabStop = false;
-            // 
             // CmdSaveLocation
             // 
             CmdSaveLocation.Font = new Font("Ebrima", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CmdSaveLocation.Location = new Point(671, 167);
+            CmdSaveLocation.Location = new Point(38, 185);
             CmdSaveLocation.Name = "CmdSaveLocation";
             CmdSaveLocation.Size = new Size(149, 24);
             CmdSaveLocation.TabIndex = 33;
             CmdSaveLocation.Text = "Choose Save Location";
             CmdSaveLocation.UseVisualStyleBackColor = true;
-            // 
-            // ImgSaveDiskLogo
-            // 
-            ImgSaveDiskLogo.Image = Properties.Resources.FloppyDisk_Logo_50_50;
-            ImgSaveDiskLogo.Location = new Point(7, 145);
-            ImgSaveDiskLogo.MaximumSize = new Size(45, 45);
-            ImgSaveDiskLogo.MinimumSize = new Size(45, 45);
-            ImgSaveDiskLogo.Name = "ImgSaveDiskLogo";
-            ImgSaveDiskLogo.Size = new Size(45, 45);
-            ImgSaveDiskLogo.TabIndex = 34;
-            ImgSaveDiskLogo.TabStop = false;
+            CmdSaveLocation.Click += CmdSaveLocation_Click;
             // 
             // errorProvider1
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // pictureBox1
+            // 
+            errorProvider1.SetIconAlignment(pictureBox1, ErrorIconAlignment.TopLeft);
+            pictureBox1.Image = Properties.Resources.FloppyDisk_Logo_25_25;
+            pictureBox1.Location = new Point(11, 152);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(26, 26);
+            pictureBox1.TabIndex = 34;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.PowerPoint_Logo_25_25;
+            pictureBox2.Location = new Point(10, 85);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(27, 27);
+            pictureBox2.TabIndex = 35;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.Excel_Logo_25_25;
+            pictureBox3.Location = new Point(11, 12);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(27, 25);
+            pictureBox3.TabIndex = 36;
+            pictureBox3.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(837, 256);
-            Controls.Add(ImgSaveDiskLogo);
+            ClientSize = new Size(642, 233);
+            Controls.Add(pictureBox3);
+            Controls.Add(pictureBox2);
+            Controls.Add(pictureBox1);
             Controls.Add(CmdSaveLocation);
-            Controls.Add(ImgPowerPointLogo);
-            Controls.Add(ImgExcelLogo);
             Controls.Add(CmdLoadPptFile);
             Controls.Add(CmdLoadExcelFile);
             Controls.Add(CmdProcessPpt);
@@ -209,13 +207,14 @@
             Controls.Add(LblSaveLocation);
             Controls.Add(LblPptFile);
             Controls.Add(LblExcelFile);
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)ImgExcelLogo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ImgPowerPointLogo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ImgSaveDiskLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -232,10 +231,10 @@
         private Button CmdProcessPpt;
         private Button CmdLoadExcelFile;
         private Button CmdLoadPptFile;
-        private PictureBox ImgExcelLogo;
-        private PictureBox ImgPowerPointLogo;
         private Button CmdSaveLocation;
-        private PictureBox ImgSaveDiskLogo;
         private ErrorProvider errorProvider1;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
     }
 }
