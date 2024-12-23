@@ -86,21 +86,22 @@
             TxtExcelFile.Location = new Point(40, 12);
             TxtExcelFile.Name = "TxtExcelFile";
             TxtExcelFile.ReadOnly = true;
-            TxtExcelFile.ScrollBars = ScrollBars.Both;
             TxtExcelFile.Size = new Size(591, 23);
             TxtExcelFile.TabIndex = 8;
             // 
             // TxtPpptFile
             // 
+            TxtPpptFile.Enabled = false;
             TxtPpptFile.Location = new Point(38, 86);
             TxtPpptFile.Name = "TxtPpptFile";
             TxtPpptFile.ReadOnly = true;
             TxtPpptFile.Size = new Size(591, 23);
-            TxtPpptFile.TabIndex = 9;
+            TxtPpptFile.TabIndex = 13;
             // 
             // TxtSaveLocation
             // 
-            TxtSaveLocation.Location = new Point(40, 156);
+            TxtSaveLocation.Enabled = false;
+            TxtSaveLocation.Location = new Point(40, 384);
             TxtSaveLocation.Name = "TxtSaveLocation";
             TxtSaveLocation.ReadOnly = true;
             TxtSaveLocation.Size = new Size(591, 23);
@@ -116,8 +117,9 @@
             // 
             // CmdProcessPpt
             // 
+            CmdProcessPpt.Enabled = false;
             CmdProcessPpt.Font = new Font("Ebrima", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CmdProcessPpt.Location = new Point(489, 185);
+            CmdProcessPpt.Location = new Point(487, 115);
             CmdProcessPpt.Name = "CmdProcessPpt";
             CmdProcessPpt.Size = new Size(142, 38);
             CmdProcessPpt.TabIndex = 27;
@@ -148,7 +150,7 @@
             // CmdSaveLocation
             // 
             CmdSaveLocation.Font = new Font("Ebrima", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CmdSaveLocation.Location = new Point(38, 185);
+            CmdSaveLocation.Location = new Point(38, 413);
             CmdSaveLocation.Name = "CmdSaveLocation";
             CmdSaveLocation.Size = new Size(149, 24);
             CmdSaveLocation.TabIndex = 33;
@@ -164,7 +166,7 @@
             // 
             errorProvider1.SetIconAlignment(pictureBox1, ErrorIconAlignment.TopLeft);
             pictureBox1.Image = Properties.Resources.FloppyDisk_Logo_25_25;
-            pictureBox1.Location = new Point(11, 152);
+            pictureBox1.Location = new Point(11, 380);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(26, 26);
             pictureBox1.TabIndex = 34;
@@ -192,7 +194,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(642, 233);
+            ClientSize = new Size(640, 165);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -209,7 +211,7 @@
             Controls.Add(LblExcelFile);
             MaximizeBox = false;
             Name = "Form1";
-            Text = "Form1";
+            Text = "Automated Offer";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

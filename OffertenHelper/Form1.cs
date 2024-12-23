@@ -10,30 +10,48 @@ namespace Offerten_Helper
 
         private void CmdProcessPpt_Click(object sender, EventArgs e)
         {
-            string filePath = UtilHelper.UtilHelper.ProcessPowerpoint(TxtPpptFile.Text, TxtExcelFile.Text);
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Powerpoint Files|*.pptx;*.pptx";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
 
-            DialogResult dialogResult = MessageBox.Show("Offer created. Would you like to review the offer?", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            string pptFile = TxtPpptFile.Text.Split("\\").Last();
 
-            if (dialogResult == DialogResult.Yes)
+            string toReplace = "_Processed.pptx";
+
+            string newPptFile = pptFile.Replace(".pptx", toReplace);
+
+
+            saveFileDialog.FileName = newPptFile;
+
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                try
+                string filePath = UtilHelper.UtilHelper.ProcessPowerpoint(TxtPpptFile.Text, TxtExcelFile.Text, saveFileDialog.FileName);
+
+                DialogResult dialogResult = MessageBox.Show("Offer created. Would you like to review the offer?", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
                 {
-                    if (File.Exists(filePath))
+                    try
                     {
-                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        if (File.Exists(filePath))
                         {
-                            FileName = filePath,
-                            UseShellExecute = true
-                        });
+                            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = filePath,
+                                UseShellExecute = true
+                            });
+                        }
+                        else
+                        {
+                            MessageBox.Show("Die angegebene Datei existiert nicht.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Die angegebene Datei existiert nicht.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Fehler beim Öffnen der Datei: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Fehler beim Öffnen der Datei: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -54,6 +72,12 @@ namespace Offerten_Helper
                     TxtExcelFile.Text = openFileDialog.FileName;
                 }
             }
+
+
+            if (TxtPpptFile.Text.Length != 0 && TxtExcelFile.Text.Length != 0)
+            {
+                CmdProcessPpt.Enabled = true;
+            }
         }
 
         private void CmdLoadPptFile_Click(object sender, EventArgs e)
@@ -71,6 +95,11 @@ namespace Offerten_Helper
                 {
                     TxtPpptFile.Text = openFileDialog.FileName;
                 }
+            }
+
+            if (TxtPpptFile.Text.Length != 0 && TxtExcelFile.Text.Length != 0)
+            {
+                CmdProcessPpt.Enabled = true;
             }
         }
 
