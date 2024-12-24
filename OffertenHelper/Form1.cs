@@ -1,3 +1,6 @@
+using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Presentation;
+
 namespace Offerten_Helper
 {
     public partial class Form1 : Form
@@ -77,6 +80,9 @@ namespace Offerten_Helper
             if (TxtPpptFile.Text.Length != 0 && TxtExcelFile.Text.Length != 0)
             {
                 CmdProcessPpt.Enabled = true;
+                CmdCheckFiles.Enabled = true;
+
+                TxtStateDisplay.BackColor = Color.AliceBlue;
             }
         }
 
@@ -97,9 +103,13 @@ namespace Offerten_Helper
                 }
             }
 
+
             if (TxtPpptFile.Text.Length != 0 && TxtExcelFile.Text.Length != 0)
             {
                 CmdProcessPpt.Enabled = true;
+                CmdCheckFiles.Enabled = true;
+
+
             }
         }
 
@@ -108,22 +118,30 @@ namespace Offerten_Helper
 
         }
 
-        private void CmdSaveLocation_Click(object sender, EventArgs e)
+        private void CmdCheckFiles_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            ValidateFiles();
+
+            MessageBox.Show("Files have been checked.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ValidateFiles()
+        {
+            var result = UtilHelper.UtilHelper.IsDefinedNamesEqual(TxtPpptFile.Text, TxtExcelFile.Text);
+            if (result.IsMappingMatching)
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.pptx";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
+                TxtState.Text = "No complications found.";
+                TxtStateDisplay.BackColor = Color.Green;
 
-                string[] mappings = new string[] { };
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    TxtSaveLocation.Text = openFileDialog.FileName;
-                }
             }
+            else
+            {
+                TxtState.Text = "Warning: Not all Defined Names match.";
+                TxtStateDisplay.BackColor = Color.Yellow;
+            }
+
+            LstPptMissingNames.Items.Clear();
+            LstPptMissingNames.Items.AddRange(result.ExcelMissingMapping.ToArray());
         }
     }
 }

@@ -1,4 +1,4 @@
-using static ExcelEditor.Helper;
+//using static ExcelEditor.Helper;
 
 namespace UnitTests
 {
@@ -9,14 +9,14 @@ namespace UnitTests
         public void TestGetDefinedCellsValues()
         {
             // Arrange
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Testfiles", "TestFile.xlsx");
+            //string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Testfiles", "TestFile.xlsx");
 
-            List<Mapping> definedCells = new List<Mapping>{
-                new Mapping("TextFieldA", "A1"),
-                new Mapping("TextFieldB", "D27"),
-                new Mapping("TextFieldC", "I16"),
-                new Mapping("TextFieldD", "M23")
-            };
+            //List<Mapping> definedCells = new List<Mapping>{
+            //    new Mapping("TextFieldA", "A1"),
+            //    new Mapping("TextFieldB", "D27"),
+            //    new Mapping("TextFieldC", "I16"),
+            //    new Mapping("TextFieldD", "M23")
+            //};
 
             // Act
             //string result = ExcelEditor.Helper.GetDefinedCellsValues(filePath, definedCells);

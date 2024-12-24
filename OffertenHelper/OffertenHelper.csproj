@@ -11,7 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ExcelEditor\ExcelEditor.csproj" />
+	  <ProjectReference Include="..\UtilHelpers\UtilHelpers.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

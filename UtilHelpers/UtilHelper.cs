@@ -6,116 +6,6 @@ namespace UtilHelper
 {
     public class UtilHelper
     {
-
-
-        //public static string CreateOutputforMappingFile(IList<string> keynames)
-        //{
-        //    string mapping = "";
-
-        //    foreach (var keyname in keynames)
-        //    {
-        //        mapping += keyname + ";";
-        //    }
-
-        //    return mapping;
-        //}
-
-        //public static IDictionary<string, string> CreateKeyValueMapping(string filename, IList<string> keynames)
-        //{
-        //    Dictionary<string, string> keyvalueMapping = new Dictionary<string, string>();
-
-        //    using (SpreadsheetDocument doc = SpreadsheetDocument.Open(filename, false))
-        //    {
-        //        WorkbookPart workbookPart = doc.WorkbookPart;
-
-        //        if (workbookPart != null)
-        //        {
-        //            foreach (var keyname in keynames)
-        //            {
-        //                string output = GetCellValueFromDefinedName(workbookPart, keyname);
-
-        //                keyvalueMapping.Add(keyname, output);
-        //            }
-        //        }
-        //    }
-        //    return keyvalueMapping;
-        //}
-
-        //public static Dictionary<string, string> GetCellValuesFromExcel(string fileName, IList<string> mappingKeys)
-        //{
-        //    Dictionary<string, string> mappedValues = new Dictionary<string, string>();
-
-        //    using (SpreadsheetDocument doc = SpreadsheetDocument.Open(fileName, false))
-
-        //        foreach (var key in mappingKeys)
-        //        {
-        //            Sheet sheet = doc.WorkbookPart.Workbook.Sheets.GetFirstChild<Sheet>();
-        //            Worksheet worksheet = (doc.WorkbookPart.GetPartById(sheet.Id.Value) as WorksheetPart).Worksheet;
-        //            IEnumerable<Row> rows = worksheet.GetFirstChild<SheetData>().Descendants<Row>();
-        //            IEnumerable<Cell> cells = worksheet.GetFirstChild<SheetData>().Descendants<Cell>();
-
-
-        //            WorkbookPart workbookPart = doc.WorkbookPart;
-        //            DefinedNames definedNames = workbookPart.Workbook.DefinedNames;
-
-        //            if (definedNames == null)
-        //            {
-        //                throw new ArgumentNullException("There are no unique names defined for cells in the excel sheet.");
-        //            }
-
-        //            foreach (DefinedName dn in definedNames)
-        //            {
-        //                if (dn.Name.Equals(key))
-        //                {
-        //                    string cellReference = dn.Name;
-        //                    string cellValue = GetCellValueFromDefinedName(workbookPart, dn.Name);
-        //                    mappedValues.Add(cellReference, cellValue);
-        //                }
-        //            }
-        //        }
-
-
-        //    if (mappedValues.Count == 0)
-        //    {
-        //        throw new ArgumentNullException("There were no matching defined names found in the excel sheet that matched the provided ones from the tool.");
-        //    }
-
-        //    return mappedValues;
-        //}
-
-        //public static string GetCellValueFromDefinedName(WorkbookPart workbookPart, string keyname)
-        //{
-        //    string namedRange = workbookPart.Workbook.DefinedNames
-        //        .FirstOrDefault(dn => ((DefinedName)dn).Name.Equals(keyname)).InnerText;
-
-        //    if (namedRange == null)
-        //        return "Defined name not found";
-
-        //    string cellReference = namedRange;
-        //    string[] parts = cellReference.Split('!');
-        //    string sheetName = parts[0].Trim('\'');
-        //    string cellAddress = parts[1];
-        //    cellAddress = cellAddress.Replace("$", "");
-
-        //    Sheet sheet = workbookPart.Workbook.Descendants<Sheet>()
-        //        .FirstOrDefault(s => s.Name == sheetName);
-
-        //    if (sheet == null)
-        //        return "Sheet not found";
-
-
-        //    WorksheetPart worksheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
-        //    Cell cell = worksheetPart.Worksheet.Descendants<Cell>()
-        //        .FirstOrDefault(c => c.CellReference == cellAddress);
-
-        //    if (cell == null)
-        //    {
-        //        throw new NullReferenceException();
-        //    }
-
-        //    return GetCellValue(workbookPart, cell);
-        //}
-
         public static string GetCellValueFromDefinedName(WorkbookPart workbookPart, string keyname)
         {
             ArgumentNullException.ThrowIfNull(workbookPart);
@@ -164,7 +54,7 @@ namespace UtilHelper
             CellFormat cellFormat = null;
             if (cell.StyleIndex != null)
             {
-                cellFormat = (CellFormat) workbookPart.WorkbookStylesPart!.Stylesheet.CellFormats!
+                cellFormat = (CellFormat)workbookPart.WorkbookStylesPart!.Stylesheet.CellFormats!
                     .ElementAt((int)cell.StyleIndex.Value);
             }
 
@@ -231,6 +121,69 @@ namespace UtilHelper
                 }
             }
             return "";
+        }
+
+        //public static bool isDefinedNamesEqual(IList<string> definedNamesExcel, IList<string> definedNamesPowerPoint)
+        public static MappingResult IsDefinedNamesEqual(string pptFile, string xlsFile)
+        {
+            IList<string> definedNamesExcel = new List<string>();
+            IList<string> definedNamesPowerPoint = GetDefinedNamesPowerPoint(pptFile);
+
+            using (SpreadsheetDocument doc = SpreadsheetDocument.Open(xlsFile, false))
+            {
+                WorkbookPart workbookPart = doc.WorkbookPart!;
+                DefinedNames definedNames = workbookPart.Workbook.DefinedNames!;
+
+                if (definedNames != null)
+                {
+                    definedNamesExcel = definedNames.Select(dn => ((DefinedName)dn).Name!.ToString()).ToList()!;
+                }
+            }
+            return FilterMissingMappings(definedNamesExcel, definedNamesPowerPoint);
+        }
+
+        private static MappingResult FilterMissingMappings(IList<string> excelNames, IList<string> pptNames)
+        {
+            IList<string> powerPointMissingMapping = pptNames.Where(x => !excelNames.Contains(x)).ToList();
+            IList<string> excelMissingMapping = excelNames.Where(x => !pptNames.Contains(x)).ToList();
+
+            bool isMappingMatching = !powerPointMissingMapping.Any() && !excelMissingMapping.Any();
+
+            var result = new MappingResult(powerPointMissingMapping, excelMissingMapping, isMappingMatching);
+
+            return result;
+        }
+
+        public static List<string> GetDefinedNamesPowerPoint(string pptfile)
+        {
+            // Open the presentation
+            var presentation = new Presentation(pptfile);
+
+            // Get all shapes from all slides
+            var allShapes = presentation.Slides.SelectMany(slide => slide.Shapes);
+
+            // Filter shapes with non-empty Names and create a list of those names
+            List<string> shapeNames = allShapes
+                .Where(shape => !string.IsNullOrEmpty(shape.Name) && !shape.Name.Contains(" "))
+                .Select(shape => shape.Name)
+                .ToList();
+
+            return shapeNames;
+        }
+
+
+        public class MappingResult
+        {
+            public IList<string> ExcelMissingMapping { get; set; }
+            public IList<string> PowerPointMissingMapping { get; set; }
+
+            public bool IsMappingMatching { get; set; }
+            public MappingResult(IList<string> powerPointMissingMapping, IList<string> excelMissingMapping, bool isMappingMatching)
+            {
+                PowerPointMissingMapping = powerPointMissingMapping;
+                ExcelMissingMapping = excelMissingMapping;
+                IsMappingMatching = isMappingMatching;
+            }
         }
     }
 }
