@@ -109,6 +109,7 @@ namespace Offerten_Helper
                 CmdProcessPpt.Enabled = true;
                 CmdCheckFiles.Enabled = true;
 
+                LblState.Text = "Ready to check files";
 
             }
         }
@@ -118,8 +119,8 @@ namespace Offerten_Helper
 
         }
 
-        private void CmdCheckFiles_Click(object sender, EventArgs e)
-        {
+        private void CmdCheckFiles_Click(object sender, EventArgs e) { 
+            
             ValidateFiles();
 
             MessageBox.Show("Files have been checked.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -130,13 +131,13 @@ namespace Offerten_Helper
             var result = UtilHelper.UtilHelper.IsDefinedNamesEqual(TxtPpptFile.Text, TxtExcelFile.Text);
             if (result.IsMappingMatching)
             {
-                TxtState.Text = "No complications found.";
+                LblState.Text = "Success. No Missing Names found in PowerPoint";
                 TxtStateDisplay.BackColor = Color.Green;
 
             }
             else
             {
-                TxtState.Text = "Warning: Not all Defined Names match.";
+                LblState.Text = "Some Names from Excel are missing in PowerPoint";
                 TxtStateDisplay.BackColor = Color.Yellow;
             }
 

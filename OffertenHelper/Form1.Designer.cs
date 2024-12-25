@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             TxtExcelFile = new TextBox();
             TxtPpptFile = new TextBox();
             CmdProcessPpt = new Button();
@@ -39,32 +40,34 @@
             LstPptMissingNames = new ListBox();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
-            TxtState = new TextBox();
+            LblState = new Label();
             CmdCheckFiles = new Button();
-            groupBox3 = new GroupBox();
+            groupBox6 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
+            groupBox6.SuspendLayout();
             SuspendLayout();
             // 
             // TxtExcelFile
             // 
             TxtExcelFile.BackColor = SystemColors.Window;
             TxtExcelFile.ForeColor = SystemColors.WindowText;
-            TxtExcelFile.Location = new Point(35, 22);
+            TxtExcelFile.Location = new Point(40, 22);
             TxtExcelFile.Name = "TxtExcelFile";
             TxtExcelFile.ReadOnly = true;
+            TxtExcelFile.RightToLeft = RightToLeft.Yes;
             TxtExcelFile.Size = new Size(591, 23);
             TxtExcelFile.TabIndex = 8;
             // 
             // TxtPpptFile
             // 
             TxtPpptFile.BackColor = SystemColors.Window;
-            TxtPpptFile.Location = new Point(34, 107);
+            TxtPpptFile.Location = new Point(40, 106);
             TxtPpptFile.Name = "TxtPpptFile";
             TxtPpptFile.ReadOnly = true;
+            TxtPpptFile.RightToLeft = RightToLeft.Yes;
             TxtPpptFile.Size = new Size(591, 23);
             TxtPpptFile.TabIndex = 13;
             // 
@@ -72,9 +75,9 @@
             // 
             CmdProcessPpt.Enabled = false;
             CmdProcessPpt.Font = new Font("Ebrima", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CmdProcessPpt.Location = new Point(10, 309);
+            CmdProcessPpt.Location = new Point(50, 330);
             CmdProcessPpt.Name = "CmdProcessPpt";
-            CmdProcessPpt.Size = new Size(369, 38);
+            CmdProcessPpt.Size = new Size(183, 42);
             CmdProcessPpt.TabIndex = 27;
             CmdProcessPpt.Text = "Create Offer";
             CmdProcessPpt.UseVisualStyleBackColor = true;
@@ -82,7 +85,7 @@
             // 
             // CmdLoadExcelFile
             // 
-            CmdLoadExcelFile.Location = new Point(35, 51);
+            CmdLoadExcelFile.Location = new Point(40, 51);
             CmdLoadExcelFile.Name = "CmdLoadExcelFile";
             CmdLoadExcelFile.Size = new Size(149, 30);
             CmdLoadExcelFile.TabIndex = 29;
@@ -92,7 +95,7 @@
             // 
             // CmdLoadPptFile
             // 
-            CmdLoadPptFile.Location = new Point(34, 136);
+            CmdLoadPptFile.Location = new Point(40, 136);
             CmdLoadPptFile.Name = "CmdLoadPptFile";
             CmdLoadPptFile.Size = new Size(149, 30);
             CmdLoadPptFile.TabIndex = 30;
@@ -120,9 +123,9 @@
             // 
             // TxtStateDisplay
             // 
-            TxtStateDisplay.BackColor = SystemColors.ActiveCaption;
+            TxtStateDisplay.BackColor = SystemColors.ControlLight;
             TxtStateDisplay.Enabled = false;
-            TxtStateDisplay.Location = new Point(6, 22);
+            TxtStateDisplay.Location = new Point(11, 22);
             TxtStateDisplay.Name = "TxtStateDisplay";
             TxtStateDisplay.ReadOnly = true;
             TxtStateDisplay.Size = new Size(23, 23);
@@ -132,9 +135,9 @@
             // 
             LstPptMissingNames.FormattingEnabled = true;
             LstPptMissingNames.ItemHeight = 15;
-            LstPptMissingNames.Location = new Point(6, 16);
+            LstPptMissingNames.Location = new Point(6, 22);
             LstPptMissingNames.Name = "LstPptMissingNames";
-            LstPptMissingNames.Size = new Size(240, 124);
+            LstPptMissingNames.Size = new Size(249, 139);
             LstPptMissingNames.TabIndex = 39;
             // 
             // groupBox1
@@ -147,62 +150,65 @@
             groupBox1.Controls.Add(pictureBox3);
             groupBox1.Location = new Point(10, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(638, 179);
+            groupBox1.Size = new Size(640, 185);
             groupBox1.TabIndex = 43;
             groupBox1.TabStop = false;
             groupBox1.Text = "File Selection";
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(TxtState);
+            groupBox2.Controls.Add(LblState);
             groupBox2.Controls.Add(CmdCheckFiles);
             groupBox2.Controls.Add(TxtStateDisplay);
-            groupBox2.Location = new Point(10, 200);
+            groupBox2.FlatStyle = FlatStyle.Flat;
+            groupBox2.Location = new Point(10, 211);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(369, 95);
+            groupBox2.Size = new Size(369, 94);
             groupBox2.TabIndex = 44;
             groupBox2.TabStop = false;
             groupBox2.Text = "Status";
             // 
-            // TxtState
+            // LblState
             // 
-            TxtState.BackColor = SystemColors.Window;
-            TxtState.Location = new Point(35, 22);
-            TxtState.Name = "TxtState";
-            TxtState.ReadOnly = true;
-            TxtState.Size = new Size(323, 23);
-            TxtState.TabIndex = 38;
+            LblState.AutoSize = true;
+            LblState.Location = new Point(40, 25);
+            LblState.Name = "LblState";
+            LblState.Size = new Size(202, 15);
+            LblState.TabIndex = 38;
+            LblState.Text = "Choose both files to enable checking";
             // 
             // CmdCheckFiles
             // 
             CmdCheckFiles.Enabled = false;
-            CmdCheckFiles.Location = new Point(35, 51);
+            CmdCheckFiles.Location = new Point(40, 51);
             CmdCheckFiles.Name = "CmdCheckFiles";
-            CmdCheckFiles.Size = new Size(108, 30);
+            CmdCheckFiles.Size = new Size(143, 30);
             CmdCheckFiles.TabIndex = 37;
             CmdCheckFiles.Text = "Check Files";
             CmdCheckFiles.UseVisualStyleBackColor = true;
             CmdCheckFiles.Click += CmdCheckFiles_Click;
             // 
-            // groupBox3
+            // groupBox6
             // 
-            groupBox3.Controls.Add(LstPptMissingNames);
-            groupBox3.Location = new Point(396, 200);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(252, 147);
-            groupBox3.TabIndex = 45;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Missing Defined Names in PowerPoint";
+            groupBox6.Controls.Add(LstPptMissingNames);
+            groupBox6.Location = new Point(390, 211);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(260, 169);
+            groupBox6.TabIndex = 49;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Missing Names in PowerPoint";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(662, 360);
-            Controls.Add(groupBox3);
+            ClientSize = new Size(659, 388);
+            Controls.Add(groupBox6);
             Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
             Controls.Add(CmdProcessPpt);
+            Controls.Add(groupBox1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Form1";
             Text = "Automated Offer";
@@ -213,7 +219,7 @@
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            groupBox3.ResumeLayout(false);
+            groupBox6.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -230,7 +236,7 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private Button CmdCheckFiles;
-        private TextBox TxtState;
-        private GroupBox groupBox3;
+        private GroupBox groupBox6;
+        private Label LblState;
     }
 }
