@@ -1,6 +1,6 @@
 ﻿namespace Offerten_Helper
 {
-    partial class Form1
+    partial class AutomatedOffer
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutomatedOffer));
             TxtExcelFile = new TextBox();
             TxtPpptFile = new TextBox();
             CmdProcessPpt = new Button();

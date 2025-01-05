@@ -4,9 +4,9 @@ using ShapeCrawler;
 
 namespace UtilHelper
 {
-    public class UtilHelper
+    public class OfficeEditor
     {
-        public static string GetCellValueFromDefinedName(WorkbookPart workbookPart, string keyname)
+        public static string ExtractDataWithFieldName(WorkbookPart workbookPart, string keyname)
         {
             ArgumentNullException.ThrowIfNull(workbookPart);
             ArgumentNullException.ThrowIfNull(keyname);
@@ -33,10 +33,10 @@ namespace UtilHelper
                 .FirstOrDefault(c => c.CellReference == cellAddress)
                 ?? throw new InvalidOperationException("Cell not found");
 
-            return GetCellValue(workbookPart, cell);
+            return ExtractData(workbookPart, cell);
         }
 
-        private static string GetCellValue(WorkbookPart workbookPart, Cell cell)
+        private static string ExtractData(WorkbookPart workbookPart, Cell cell)
         {
             string value = cell.CellValue == null ? "" : cell.CellValue.InnerText;
             if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
@@ -83,7 +83,7 @@ namespace UtilHelper
         }
 
 
-        public static void InsertInputFromExcel(Presentation presentation, DefinedNames definedNames, WorkbookPart workbookPart)
+        public static void InsertDataIntoShape(Presentation presentation, DefinedNames definedNames, WorkbookPart workbookPart)
         {
             foreach (DefinedName keyname in definedNames)
             {
@@ -93,7 +93,7 @@ namespace UtilHelper
                     {
                         if (shape.Name.Equals(keyname.Name))
                         {
-                            shape.TextBox!.Text = GetCellValueFromDefinedName(workbookPart, keyname.Name!);
+                            shape.TextBox!.Text = ExtractDataWithFieldName(workbookPart, keyname.Name!);
                         }
                     }
                 }
@@ -102,7 +102,7 @@ namespace UtilHelper
 
 
 
-        public static string ProcessPowerpoint(string pptFile, string xlsFile, string savePath)
+        public static string CreateNewPresentation(string pptFile, string xlsFile, string savePath)
         {
             using (SpreadsheetDocument doc = SpreadsheetDocument.Open(xlsFile, false))
             {
@@ -114,7 +114,7 @@ namespace UtilHelper
                 {
                     var presentation = new Presentation(pptFile);
 
-                    InsertInputFromExcel(presentation, definedNames, workbookPart);
+                    InsertDataIntoShape(presentation, definedNames, workbookPart);
                     presentation.SaveAs(savePath);
 
                     return savePath;
@@ -124,10 +124,10 @@ namespace UtilHelper
         }
 
         //public static bool isDefinedNamesEqual(IList<string> definedNamesExcel, IList<string> definedNamesPowerPoint)
-        public static MappingResult IsDefinedNamesEqual(string pptFile, string xlsFile)
+        public static MappingResult IsFieldNamesEqual(string pptFile, string xlsFile)
         {
             IList<string> definedNamesExcel = new List<string>();
-            IList<string> definedNamesPowerPoint = GetDefinedNamesPowerPoint(pptFile);
+            IList<string> definedNamesPowerPoint = GetPowerPointFieldNames(pptFile);
 
             using (SpreadsheetDocument doc = SpreadsheetDocument.Open(xlsFile, false))
             {
@@ -139,10 +139,10 @@ namespace UtilHelper
                     definedNamesExcel = definedNames.Select(dn => ((DefinedName)dn).Name!.ToString()).ToList()!;
                 }
             }
-            return FilterMissingMappings(definedNamesExcel, definedNamesPowerPoint);
+            return FilterMissingAssignedNames(definedNamesExcel, definedNamesPowerPoint);
         }
 
-        private static MappingResult FilterMissingMappings(IList<string> excelNames, IList<string> pptNames)
+        private static MappingResult FilterMissingAssignedNames(IList<string> excelNames, IList<string> pptNames)
         {
             IList<string> powerPointMissingMapping = pptNames.Where(x => !excelNames.Contains(x)).ToList();
             IList<string> excelMissingMapping = excelNames.Where(x => !pptNames.Contains(x)).ToList();
@@ -154,7 +154,7 @@ namespace UtilHelper
             return result;
         }
 
-        public static List<string> GetDefinedNamesPowerPoint(string pptfile)
+        public static List<string> GetPowerPointFieldNames(string pptfile)
         {
             // Open the presentation
             var presentation = new Presentation(pptfile);
