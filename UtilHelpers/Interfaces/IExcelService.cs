@@ -11,5 +11,6 @@ namespace Core.Interfaces
         void LoadExcelFile(string path);
         string ExtractDataWithFieldName(string keyname);
         IList<string> GetDefinedNames();
+        Dictionary<string, string> GetDefinedNamesWithValues(string path);
     }
 }

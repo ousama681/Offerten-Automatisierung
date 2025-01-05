@@ -12,6 +12,7 @@ namespace Core.Interfaces
         void InsertDataIntoShape(string shapeName, string value);
         IList<string> GetShapeNames(string path);
         void SavePresentation(string targetPath);
+        Dictionary<string, string> GetShapeValues(string path);
 
     }
 }

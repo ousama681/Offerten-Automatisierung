@@ -22,10 +22,18 @@ namespace Testing
             const string shapeName = "TestShape";
             const string testValue = "Test Value";
 
-            _pptService.InsertDataIntoShape(shapeName, testValue);
-            var shapes = _pptService.GetShapeNames(TEMPLATE_PATH);
+       
 
-            Assert.That(shapes, Does.Contain(shapeName));
+            _pptService.LoadPowerPointFile(OUTPUT_PATH);
+            _pptService.InsertDataIntoShape(shapeName, testValue);
+            _pptService.SavePresentation(OUTPUT_PATH);
+
+            Dictionary<string, string> shapeValuesAfter = _pptService.GetShapeValues(OUTPUT_PATH);
+
+            string testShapeValueAfter = "";                
+            shapeValuesAfter.TryGetValue(shapeName, out testShapeValueAfter);
+
+            Assert.AreEqual(testShapeValueAfter, testValue);
         }
 
         [Test]

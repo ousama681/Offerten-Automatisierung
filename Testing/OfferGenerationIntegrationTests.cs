@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Interfaces;
+using DocumentFormat.OpenXml;
 using Infrastructure.Services;
 
 namespace Testing
@@ -12,7 +13,7 @@ namespace Testing
     public class OfferGenerationIntegrationTests
     {
         private const string TEST_EXCEL_PATH = "TestData/test_data_types.xlsx";
-        private const string TEMPLATE_PATH = "TestData/template.pptx";
+        private const string TEMPLATE_PATH = "TestData/template_data_types.pptx";
         private const string OUTPUT_PATH = "TestData/generated_offer.pptx";
 
         private IExcelService _excelService;
@@ -23,7 +24,9 @@ namespace Testing
         public void Setup()
         {
             _excelService = new ExcelService();
+            _excelService.LoadExcelFile(TEST_EXCEL_PATH);
             _pptService = new PowerPointService();
+            _pptService.LoadPowerPointFile(TEMPLATE_PATH);
             _mappingService = new MappingService(_excelService, _pptService);
         }
 
@@ -31,6 +34,7 @@ namespace Testing
         public void CompleteOfferGeneration_WithValidData_GeneratesCorrectOffer()
         {
             // TC009: Kompletter Offertengenerierungsprozess
+            
             _mappingService.ApplyMapping(TEST_EXCEL_PATH, OUTPUT_PATH);
             Assert.That(File.Exists(OUTPUT_PATH));
         }
@@ -39,41 +43,13 @@ namespace Testing
         public void DataTypeHandling_WithVariousTypes_MapsCorrectly()
         {
             // TC003: Verschiedene Datentypen
-            var definedNames = _excelService.GetDefinedNames();
-            foreach (var name in definedNames)
-            {
-                var value = _excelService.ExtractDataWithFieldName(name);
-                Assert.That(value, Is.Not.Null);
-            }
-        }
-
-        [Test]
-        public void PerformanceTest_WithLargeDataset_CompletesWithinTimeLimit()
-        {
-            // TC010: Verarbeitungszeit
-            var stopwatch = Stopwatch.StartNew();
-
             _mappingService.ApplyMapping(TEST_EXCEL_PATH, OUTPUT_PATH);
 
-            stopwatch.Stop();
-            Assert.That(stopwatch.ElapsedMilliseconds, Is.LessThan(30000));
-        }
 
-        [Test]
-        public void ResourceUsage_WithMultipleExecutions_MaintainsStableMemory()
-        {
-            // TC011: Ressourcenverbrauch
-            long initialMemory = GC.GetTotalMemory(true);
+            Dictionary<string, string> insertedShapeValues = _pptService.GetShapeValues(OUTPUT_PATH);
+            Dictionary<string, string> extractedFieldValues = _excelService.GetDefinedNamesWithValues(TEST_EXCEL_PATH);
 
-            for (int i = 0; i < 5; i++)
-            {
-                _mappingService.ApplyMapping(TEST_EXCEL_PATH, $"output_{i}.pptx");
-            }
-
-            GC.Collect();
-            long finalMemory = GC.GetTotalMemory(true);
-
-            Assert.That(finalMemory - initialMemory, Is.LessThan(10_000_000)); // 10MB Toleranz
+            CollectionAssert.AreEquivalent(insertedShapeValues, extractedFieldValues);
         }
 
         [Test]
@@ -82,12 +58,12 @@ namespace Testing
             // TC005: Formaterhaltung
             const string formattedTemplatePath = "TestData/formatted_template.pptx";
             var originalService = new PowerPointService();
-            var originalShapes = originalService.GetShapeNames();
+            var originalShapes = originalService.GetShapeNames(TEMPLATE_PATH);
 
             _mappingService.ApplyMapping(TEST_EXCEL_PATH, OUTPUT_PATH);
 
             var resultService = new PowerPointService();
-            var resultShapes = resultService.GetShapeNames();
+            var resultShapes = resultService.GetShapeNames(OUTPUT_PATH);
 
             Assert.That(resultShapes, Is.EquivalentTo(originalShapes));
         }

@@ -12,11 +12,12 @@ namespace Testing
         public void Setup()
         {
             _excelService = new ExcelService();
+            _excelService.LoadExcelFile(TEST_EXCEL_PATH);
         }
 
         [Test]
         [TestCase("NamedCell1", "ExpectedValue1")]
-        [TestCase("EmptyCell", "")]
+        [TestCase("EmptyCell", "Cell 'E1' has no Value in it!")]
         public void ExtractDataWithFieldName_WithValidNames_ReturnsExpectedValues(string fieldName, string expected)
         {
             var result = _excelService.ExtractDataWithFieldName(fieldName);

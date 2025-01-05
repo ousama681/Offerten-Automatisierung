@@ -47,5 +47,25 @@ string shapeName, string value)
         {
             _presentation.SaveAs(targetPath);
         }
+
+        public Dictionary<string, string> GetShapeValues(string path)
+        {
+            _presentation = new Presentation(path);
+
+            var shapeValues = new Dictionary<string, string>();
+
+            foreach (var slide in _presentation.Slides)
+            {
+                foreach (var shape in slide.Shapes)
+                {
+                    if (!string.IsNullOrEmpty(shape.Name) && !shape.Name.Contains(" "))
+                    {
+                        shapeValues.Add(shape.Name, shape.TextBox?.Text ?? string.Empty);
+                    }
+                }
+            }
+
+            return shapeValues;
+        }
     }
 }

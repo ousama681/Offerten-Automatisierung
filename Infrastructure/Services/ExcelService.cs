@@ -49,8 +49,12 @@ namespace Infrastructure.Services
                 ?? throw new InvalidOperationException("Worksheet part not found");
 
             var cell = worksheetPart.Worksheet.Descendants<Cell>()
-                .FirstOrDefault(c => c.CellReference == cellAddress)
-                ?? throw new InvalidOperationException($"Cell '{cellAddress}' not found");
+                .FirstOrDefault(c => c.CellReference == cellAddress);
+
+            if (cell == null)
+            {
+                return $"Cell '{cellAddress}' has no Value in it!";
+            }
 
             return ExtractCellValue(cell);
         }
@@ -114,6 +118,37 @@ namespace Infrastructure.Services
             }
 
             return cell.CellValue.InnerText;
+        }
+
+        public Dictionary<string, string> GetDefinedNamesWithValues(string path)
+        {
+
+            _spreadsheetDocument = SpreadsheetDocument.Open(path, false);
+            _workbookPart = _spreadsheetDocument.WorkbookPart;
+
+            var definedNamesWithValues = new Dictionary<string, string>();
+            var definedNames = _workbookPart.Workbook.DefinedNames;
+
+            if (definedNames == null)
+                return definedNamesWithValues;
+
+            foreach (DefinedName definedName in definedNames)
+            {
+                if (!string.IsNullOrEmpty(definedName.Name))
+                {
+                    try
+                    {
+                        string value = ExtractDataWithFieldName(definedName.Name);
+                        definedNamesWithValues.Add(definedName.Name, value ?? string.Empty);
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+                }
+            }
+
+            return definedNamesWithValues;
         }
 
         public void Dispose()
