@@ -24,7 +24,7 @@ namespace IntegrationTests
             string newPptFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Testfiles", "Kundenofferte_Processed.pptx");
 
             // Act
-            string savedPptFile = UtilHelper.UtilHelper.ProcessPowerpoint(pptFile, xlsFile, newPptFile);
+            string savedPptFile = UtilHelper.OfficeEditor.CreateNewPresentation(pptFile, xlsFile, newPptFile);
 
 
             //string newPptFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Testfiles", "Kundenofferte_Processed.pptx");
@@ -44,7 +44,7 @@ namespace IntegrationTests
             string newPptFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Testfiles", "Kundenofferte_Processed.pptx");
 
             // Act
-            string savedPptFile = UtilHelper.UtilHelper.ProcessPowerpoint(pptFile, xlsFile, newPptFile);
+            string savedPptFile = UtilHelper.OfficeEditor.CreateNewPresentation(pptFile, xlsFile, newPptFile);
 
 
             IList<string> keynames = GetListOfKeyNames(xlsFile);
@@ -140,7 +140,7 @@ namespace IntegrationTests
                         if (dn.Name!.Equals(key))
                         {
                             string cellReference = dn.Name!;
-                            string cellValue = UtilHelper.UtilHelper.GetCellValueFromDefinedName(workbookPart, dn.Name!);
+                            string cellValue = UtilHelper.OfficeEditor.ExtractDataWithFieldName(workbookPart, dn.Name!);
                             mappedValues.Add(cellReference, cellValue);
                         }
                     }
