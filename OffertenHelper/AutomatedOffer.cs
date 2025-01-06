@@ -47,7 +47,25 @@ namespace Offerten_Helper
                 {
                     _mappingService.ApplyMapping(_excelPath, saveDialog.FileName);
                     MessageBox.Show("Offer created successfully!");
+
+                    // Nachfrage zum Öffnen der generierten Datei
+                    var openFileDialog = MessageBox.Show(
+                        "Would you like to open the generated offer?",
+                        "Open Offer",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (openFileDialog == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = saveDialog.FileName,
+                            UseShellExecute = true
+                        });
+                    }
                 }
+
+
             }
             catch (IOException ex) when (ex.Message.Contains("being used by another process"))
             {
