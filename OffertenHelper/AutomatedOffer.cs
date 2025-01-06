@@ -77,8 +77,29 @@ namespace Offerten_Helper
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 _excelPath = dialog.FileName;
-                TxtExcelFile.Text = _excelPath;
-                _excelService.LoadExcelFile(_excelPath);
+
+                try
+                {
+                    _excelService.LoadExcelFile(_excelPath);
+                    TxtExcelFile.Text = _excelPath;
+                }
+                catch (IOException ex) when (ex.Message.Contains("being used by another process"))
+                {
+                    MessageBox.Show("Please close the Excel File before choosing.",
+                        "File Access Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+
+
+                if (TxtPpptFile.Text.Length != 0 && TxtExcelFile.Text.Length != 0)
+                {
+                    CmdProcessPpt.Enabled = true;
+                    CmdCheckFiles.Enabled = true;
+
+                    LblState.Text = "Ready to check files";
+
+                }
             }
         }
 
@@ -149,29 +170,29 @@ namespace Offerten_Helper
         }
 
 
-        private void ValidateFiles()
-        {
-            var result = UtilHelper.OfficeEditor.IsFieldNamesEqual(TxtPpptFile.Text, TxtExcelFile.Text);
-            if (result.IsMappingMatching)
-            {
-                LblState.Text = "Success. No Missing Names found in PowerPoint";
-                TxtStateDisplay.BackColor = Color.Green;
+        //private void ValidateFiles()
+        //{
+        //    var result = UtilHelper.OfficeEditor.IsFieldNamesEqual(TxtPpptFile.Text, TxtExcelFile.Text);
+        //    if (result.IsMappingMatching)
+        //    {
+        //        LblState.Text = "Success. No Missing Names found in PowerPoint";
+        //        TxtStateDisplay.BackColor = Color.Green;
 
-            }
-            else
-            {
-                LblState.Text = "Some Names from Excel are missing in PowerPoint";
-                TxtStateDisplay.BackColor = Color.Yellow;
-            }
+        //    }
+        //    else
+        //    {
+        //        LblState.Text = "Some Names from Excel are missing in PowerPoint";
+        //        TxtStateDisplay.BackColor = Color.Yellow;
+        //    }
 
-            LstPptMissingNames.Items.Clear();
-            LstPptMissingNames.Items.AddRange(result.ExcelMissingMapping.ToArray());
-        }
+        //    LstPptMissingNames.Items.Clear();
+        //    LstPptMissingNames.Items.AddRange(result.ExcelMissingMapping.ToArray());
+        //}
 
         private void UpdateMissingNamesList(MappingResult result)
         {
             LstPptMissingNames.Items.Clear();
-            foreach (var name in result.PowerPointMissingMapping)
+            foreach (var name in result.ExcelMissingMapping)
             {
                 LstPptMissingNames.Items.Add(name);
             }

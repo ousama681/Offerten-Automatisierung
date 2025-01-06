@@ -32,9 +32,7 @@ namespace Testing
 
         [Test]
         public void CompleteOfferGeneration_WithValidData_GeneratesCorrectOffer()
-        {
-            // TC009: Kompletter Offertengenerierungsprozess
-            
+        {     
             _mappingService.ApplyMapping(TEST_EXCEL_PATH, OUTPUT_PATH);
             Assert.That(File.Exists(OUTPUT_PATH));
         }
@@ -42,7 +40,6 @@ namespace Testing
         [Test]
         public void DataTypeHandling_WithVariousTypes_MapsCorrectly()
         {
-            // TC003: Verschiedene Datentypen
             _mappingService.ApplyMapping(TEST_EXCEL_PATH, OUTPUT_PATH);
 
 
@@ -55,7 +52,6 @@ namespace Testing
         [Test]
         public void FormatPreservation_WithFormattedTemplate_PreservesFormatting()
         {
-            // TC005: Formaterhaltung
             const string formattedTemplatePath = "TestData/formatted_template.pptx";
             var originalService = new PowerPointService();
             var originalShapes = originalService.GetShapeNames(TEMPLATE_PATH);
